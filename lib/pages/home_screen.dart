@@ -1,4 +1,3 @@
-
 import 'package:ehealt/services/data_scraper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -78,11 +77,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return isLoading
         ? const Center(
-            child: CircularProgressIndicator(color: Colors.green,),
+            child: CircularProgressIndicator(
+              color: Colors.green,
+            ),
           )
         : errorMessage.isNotEmpty
             ? Text(
@@ -91,8 +90,8 @@ class _HomePageState extends State<HomePage> {
               )
             : data != null
                 ? Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.all(10),
+                    child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Column(
                         children: [
@@ -109,41 +108,59 @@ class _HomePageState extends State<HomePage> {
                                 Card(
                                   elevation: 2,
                                   child: Container(
-                                    // decoration: BoxDecoration(
-                                    //     image: DecorationImage(
-                                    //         image: Image.network(
-                                    //                 'https://akcdn.detik.net.id/community/media/visual/2023/05/07/ilustrasi-penganiayaan_43.jpeg?w=300&q=80')
-                                    //             .image,
-                                    //         fit: BoxFit.cover)),
                                     child: Padding(
                                       padding: const EdgeInsets.all(12.0),
                                       child: Row(
                                         children: [
+                                          // Kolom pertama
                                           Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'Jumlah Kasus: ${data!['Jumlah Kasus'] ?? 'Tidak tersedia'}',
-                                                style:
-                                                    GoogleFonts.poppins(
-                                                        fontSize: 16),
+                                                'Jumlah Kasus',
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 16),
                                               ),
                                               const SizedBox(height: 8),
                                               Text(
-                                                'Korban Laki-laki: ${data!['Korban Laki-laki'] ?? 'Tidak tersedia'}',
-                                                style:
-                                                    GoogleFonts.poppins(
-                                                        fontSize: 16),
+                                                'Korban Laki-laki',
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 16),
                                               ),
                                               const SizedBox(height: 8),
                                               Text(
-                                                'Korban Perempuan: ${data!['Korban Perempuan'] ?? 'Tidak tersedia'}',
-                                                style:
-                                                    GoogleFonts.poppins(
-                                                        fontSize: 16),
+                                                'Korban Perempuan',
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 16),
                                               ),
                                             ],
+                                          ),
+                                          const SizedBox(width: 8),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  ': ${data!['Jumlah Kasus'] ?? 'Tidak tersedia'}',
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 16),
+                                                ),
+                                                const SizedBox(height: 8),
+                                                Text(
+                                                  ': ${data!['Korban Laki-laki'] ?? 'Tidak tersedia'}',
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 16),
+                                                ),
+                                                const SizedBox(height: 8),
+                                                Text(
+                                                  ': ${data!['Korban Perempuan'] ?? 'Tidak tersedia'}',
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 16),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -164,8 +181,7 @@ class _HomePageState extends State<HomePage> {
                           // ),
                           Text('Tips menghindari kekerasan',
                               style: GoogleFonts.poppins(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600)),
+                                  fontSize: 18, fontWeight: FontWeight.w600)),
                           Card(
                             elevation: 2,
                             child: Container(
@@ -174,8 +190,7 @@ class _HomePageState extends State<HomePage> {
                                 child: Center(
                                   child: Text(
                                     textGemini,
-                                    style:
-                                        GoogleFonts.poppins(fontSize: 16),
+                                    style: GoogleFonts.poppins(fontSize: 16),
                                   ),
                                 ),
                               ),
@@ -184,7 +199,7 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                )
+                  )
                 : ElevatedButton(
                     onPressed: loadData,
                     child: const Text('Muat Data'),

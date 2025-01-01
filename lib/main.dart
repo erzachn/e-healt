@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.green[200],
-            foregroundColor: Colors.white,
+            foregroundColor: Colors.black,
         )
     )));
   }
