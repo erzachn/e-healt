@@ -105,68 +105,115 @@ class _HomePageState extends State<HomePage> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600),
                                 ),
-                                Card(
-                                  elevation: 2,
-                                  child: Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
-                                      child: Row(
-                                        children: [
-                                          // Kolom pertama
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Jumlah Kasus',
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 16),
-                                              ),
-                                              const SizedBox(height: 8),
-                                              Text(
-                                                'Korban Laki-laki',
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 16),
-                                              ),
-                                              const SizedBox(height: 8),
-                                              Text(
-                                                'Korban Perempuan',
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 16),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(width: 8),
-                                          Expanded(
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          clipBehavior: Clip.hardEdge,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color: Colors.red[900]),
+                                          width: 110,
+                                          height: 110,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 4, vertical: 20),
                                             child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
                                               children: [
-                                                Text(
-                                                  ': ${data!['Jumlah Kasus'] ?? 'Tidak tersedia'}',
-                                                  style: GoogleFonts.poppins(
-                                                      fontSize: 16),
-                                                ),
-                                                const SizedBox(height: 8),
-                                                Text(
-                                                  ': ${data!['Korban Laki-laki'] ?? 'Tidak tersedia'}',
-                                                  style: GoogleFonts.poppins(
-                                                      fontSize: 16),
-                                                ),
-                                                const SizedBox(height: 8),
-                                                Text(
-                                                  ': ${data!['Korban Perempuan'] ?? 'Tidak tersedia'}',
-                                                  style: GoogleFonts.poppins(
-                                                      fontSize: 16),
+                                                Text("Jumlah kasus",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 10)),
+                                                Expanded(
+                                                  child: Center(
+                                                    child: Text(
+                                                      '${data!['Jumlah Kasus'] ?? '0'}',
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                              fontSize: 40),
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Container(
+                                          clipBehavior: Clip.hardEdge,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color: Colors.blue[900]),
+                                          width: 110,
+                                          height: 110,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 4, vertical: 20),
+                                            child: Column(
+                                              children: [
+                                                Text("korban laki-laki",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 10)),
+                                                Expanded(
+                                                  child: Center(
+                                                    child: Text(
+                                                      '${data!['Korban Laki-laki'] ?? '0'}',
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                              fontSize: 40),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Container(
+                                          clipBehavior: Clip.hardEdge,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color: Colors.pink[900]),
+                                          width: 110,
+                                          height: 110,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 4, vertical: 20),
+                                            child: Column(
+                                              children: [
+                                                Text("korban perempuan",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 10)),
+                                                Expanded(
+                                                  child: Center(
+                                                    child: Text(
+                                                      '${data!['Korban Perempuan'] ?? '0'}',
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                              fontSize: 40,),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ),
+                                )
                               ],
                             ),
                           ),
