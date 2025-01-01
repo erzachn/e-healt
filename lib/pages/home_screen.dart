@@ -1,5 +1,5 @@
 
-import 'package:ehealt/data_scraper.dart';
+import 'package:ehealt/services/data_scraper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -78,8 +78,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
+
 
     return isLoading
         ? const Center(

@@ -1,4 +1,4 @@
-import 'package:ehealt/detail_scraper.dart';
+import 'package:ehealt/services/detail_scraper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';

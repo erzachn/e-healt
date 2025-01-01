@@ -1,5 +1,5 @@
 
-import 'package:ehealt/berita_scraper.dart';
+import 'package:ehealt/services/berita_scraper.dart';
 import 'package:ehealt/pages/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
