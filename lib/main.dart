@@ -8,7 +8,6 @@ import 'package:ehealt/pages/info_screen.dart';
 import 'package:ehealt/pages/setting_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
@@ -25,11 +24,24 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'eHealth App',
-      theme: ThemeData(
-
-      ),
       home: const MainPage(), // Set MainPage as the home widget
-    );
+      theme: ThemeData(
+        colorScheme: ColorScheme.dark(),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.green[200]
+        ),
+        navigationBarTheme: NavigationBarThemeData(
+          indicatorColor: Colors.green[200]
+        ),
+        cardTheme: CardTheme(
+          color: Colors.green.withOpacity(0.4)
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.green[200],
+            foregroundColor: Colors.white,
+        )
+    )));
   }
 }
 
@@ -62,44 +74,75 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    final mainColor = Theme.of(context).primaryColor;
-
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 60,
-        leading: Icon(Icons.menu),
-        backgroundColor: mainColor,
         title: Text(
           "REMAJA SEHAT",
           style: GoogleFonts.poppins(fontWeight: FontWeight.w700),
         ),
         centerTitle: true,
-        bottom: PreferredSize(preferredSize: const Size.fromHeight(10), child: Container()),
+        
+        bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(10), child: Container()),
       ),
-      drawer: Container(),
+      drawer: Drawer(),
       body: SafeArea(child: _pages[_selectedIndex]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          const intent =  AndroidIntent(
-            action: 'android.intent.action.VIEW',
-            data: 'https://wa.me/6285187086869?text=.menu', // Added WhatsApp URL
-            package: 'com.whatsapp', // Package WhatsApp
-            flags: [Flag.FLAG_ACTIVITY_NEW_TASK],
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text(
+                  "CHAT KONSUL",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w600, fontSize: 18),
+                ),
+                content: Row(
+                  children: [
+                    ElevatedButton(
+                        onPressed: () {
+                          const intent = AndroidIntent(
+                            action: 'android.intent.action.VIEW',
+                            data:
+                                'https://wa.me/6285187086869?text=.menu', // Added WhatsApp URL
+                            package: 'com.whatsapp', // Package WhatsApp
+                            flags: [Flag.FLAG_ACTIVITY_NEW_TASK],
+                          );
+                          intent.launch();
+                        },
+                        child: Text('Konsul AI')),
+                        SizedBox(width: 10,),
+                    ElevatedButton(
+                        onPressed: () {
+                          const intent = AndroidIntent(
+                            action: 'android.intent.action.VIEW',
+                            data:
+                                'https://wa.me/6285187086869?text=.menu', // Added WhatsApp URL
+                            package: 'com.whatsapp', // Package WhatsApp
+                            flags: [Flag.FLAG_ACTIVITY_NEW_TASK],
+                          );
+                          intent.launch();
+                        },
+                        child: Text('Konsul Real'))
+                  ],
+                ),
+              );
+            },
           );
-          intent.launch();
         },
         elevation: 0,
-        child: const FaIcon(
-          FontAwesomeIcons.whatsapp,
-        ),
+        child: Icon(Icons.message)
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
         onDestinationSelected: _onItemTapped,
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.article), label: 'Berita'),
-          NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
+          NavigationDestination(icon: Icon(Icons.article), label: 'News'),
+          NavigationDestination(icon: Icon(Icons.settings), label: 'Setting'),
         ],
       ),
     );

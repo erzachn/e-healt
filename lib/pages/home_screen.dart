@@ -3,7 +3,6 @@ import 'package:ehealt/data_scraper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,7 +16,6 @@ class _HomePageState extends State<HomePage> {
   Map<String, String>? data;
   bool isLoading = false;
   String errorMessage = "";
-  String _name = "Guest";
   String textGemini = 'No data';
   final model = GenerativeModel(
     model: 'gemini-1.5-flash',
@@ -36,7 +34,6 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     loadData();
     _gemini();
-    _loadName();
   }
 
   Future<void> _gemini() async {
@@ -55,13 +52,6 @@ class _HomePageState extends State<HomePage> {
     print(response);
     textGemini = await response.text.toString();
     setState(() {});
-  }
-
-  Future<void> _loadName() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _name = prefs.getString('name') ?? "Guest";
-    });
   }
 
   void loadData() async {
@@ -93,7 +83,7 @@ class _HomePageState extends State<HomePage> {
 
     return isLoading
         ? const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(color: Colors.green,),
           )
         : errorMessage.isNotEmpty
             ? Text(

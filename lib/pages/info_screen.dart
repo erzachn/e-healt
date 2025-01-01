@@ -35,7 +35,7 @@ class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
     return isLoading
-        ? const Center(child: CircularProgressIndicator())
+        ? const Center(child: CircularProgressIndicator(color: Colors.green,))
         : articles.isEmpty
             ? const Center(child: Text('No articles found'))
             : ListView.builder(

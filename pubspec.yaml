@@ -39,16 +39,18 @@ dependencies:
   html: ^0.15.5
   google_fonts: ^6.2.1
   android_intent_plus: ^5.2.1
-  font_awesome_flutter: ^10.8.0
-  shared_preferences: ^2.3.3
   google_generative_ai: ^0.4.6
   flutter_dotenv: ^5.2.1
+  icons_launcher: ^3.0.0
   # flutter_launcher_icons: ^0.14.2
 
-# flutter_icons:
-#   android: true
-#   ios: false
-#   image_path: "assets/icon/icon.png"
+icons_launcher:
+  image_path: "assets/ic_logo_radius.jpg"
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: true
 
 dev_dependencies:
   flutter_test:
