@@ -187,7 +187,7 @@ class slideCard extends StatelessWidget {
               ),
             ).animate().shimmer(),
             SizedBox(
-              width: 20,
+              width: 10,
             ),
             Container(
               clipBehavior: Clip.hardEdge,
@@ -195,7 +195,7 @@ class slideCard extends StatelessWidget {
                   borderRadius:
                       BorderRadius.circular(14),
                   color: Colors.blue[900]),
-              width: 110,
+              width: 140,
               height: 110,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -222,7 +222,7 @@ class slideCard extends StatelessWidget {
               ),
             ).animate().shimmer( delay: 200.ms),
             SizedBox(
-              width: 20,
+              width: 10,
             ),
             Container(
               clipBehavior: Clip.hardEdge,
@@ -230,7 +230,7 @@ class slideCard extends StatelessWidget {
                   borderRadius:
                       BorderRadius.circular(14),
                   color: Colors.pink[900]),
-              width: 110,
+              width: 140,
               height: 110,
               child: Padding(
                 padding: const EdgeInsets.symmetric(

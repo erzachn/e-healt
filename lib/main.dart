@@ -95,8 +95,8 @@ class _MainPageState extends State<MainPage> {
                 ),
                 Text(
                   'Menu',
-                  style: GoogleFonts.poppins(fontSize: 20),
-                )
+                  style: GoogleFonts.poppins(fontSize: 26),
+                ),
               ],
             ),
           ),
