@@ -83,7 +83,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
           title: Text(widget.title, style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w600),),
         ),
         body: isLoading
-            ? const Center(child: CircularProgressIndicator(color: Colors.green,))
+            ? const Center(child: CircularProgressIndicator())
             : textGemini.isEmpty
                 ? const Center(child: Text(''))
                 : SingleChildScrollView(

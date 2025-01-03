@@ -23,7 +23,7 @@ class _InfoPageState extends State<InfoPage> {
 
   Future<void> loadArticles() async {
     const url =
-        'https://www.detik.com/tag/kekerasan-remaja/'; // Ganti dengan URL yang akan di-scrape
+        'https://www.detik.com/tag/remaja/'; // Ganti dengan URL yang akan di-scrape
     final fetchedArticles = await fetchArticles(url);
 
     setState(() {
@@ -35,7 +35,7 @@ class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
     return isLoading
-        ? const Center(child: CircularProgressIndicator(color: Colors.green,))
+        ? const Center(child: CircularProgressIndicator())
         : articles.isEmpty
             ? const Center(child: Text('No articles found'))
             : ListView.builder(
@@ -43,6 +43,7 @@ class _InfoPageState extends State<InfoPage> {
                 itemBuilder: (context, index) {
                   final article = articles[index];
                   return Card(
+                    // color: Theme.of(context).colorScheme.onPrimary,
                     margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                     child: ListTile(
                       onTap: () {

@@ -1,5 +1,6 @@
 import 'package:ehealt/services/data_scraper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
@@ -80,7 +81,6 @@ class _HomePageState extends State<HomePage> {
     return isLoading
         ? const Center(
             child: CircularProgressIndicator(
-              color: Colors.green,
             ),
           )
         : errorMessage.isNotEmpty
@@ -105,127 +105,11 @@ class _HomePageState extends State<HomePage> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600),
                                 ),
-                                SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          clipBehavior: Clip.hardEdge,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              color: Colors.red[900]),
-                                          width: 110,
-                                          height: 110,
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 4, vertical: 20),
-                                            child: Column(
-                                              children: [
-                                                Text("Jumlah kasus",
-                                                    style: GoogleFonts.poppins(
-                                                        fontSize: 10)),
-                                                Expanded(
-                                                  child: Center(
-                                                    child: Text(
-                                                      '${data!['Jumlah Kasus'] ?? '0'}',
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                              fontSize: 40),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        Container(
-                                          clipBehavior: Clip.hardEdge,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              color: Colors.blue[900]),
-                                          width: 110,
-                                          height: 110,
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 4, vertical: 20),
-                                            child: Column(
-                                              children: [
-                                                Text("korban laki-laki",
-                                                    style: GoogleFonts.poppins(
-                                                        fontSize: 10)),
-                                                Expanded(
-                                                  child: Center(
-                                                    child: Text(
-                                                      '${data!['Korban Laki-laki'] ?? '0'}',
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                              fontSize: 40),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        Container(
-                                          clipBehavior: Clip.hardEdge,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              color: Colors.pink[900]),
-                                          width: 110,
-                                          height: 110,
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 4, vertical: 20),
-                                            child: Column(
-                                              children: [
-                                                Text("korban perempuan",
-                                                    style: GoogleFonts.poppins(
-                                                        fontSize: 10)),
-                                                Expanded(
-                                                  child: Center(
-                                                    child: Text(
-                                                      '${data!['Korban Perempuan'] ?? '0'}',
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                              fontSize: 40,),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
+                                slideCard(data: data)
                               ],
                             ),
                           ),
                           const SizedBox(height: 10),
-                          // Align(
-                          //   child: Text(
-                          //     'Lorem ipsum odor amet, consectetuer adipiscing elit. Quis consequat ligula sodales nisl tortor ex natoque. Et commodo nam donec feugiat, nulla sed vitae fusce. Dolor id class semper semper bibendum sem sodales. Pellentesque eu posuere molestie consequat cras lacus. Non pulvinar a hac, imperdiet aliquam placerat aptent nam. Ipsum sapien morbi semper dis luctus ridiculus varius justo adipiscing. Class egestas per justo, himenaeos nisl molestie.Blandit posuere facilisi fusce quam molestie. Nisl elit augue dictum volutpat, eros purus. Quam lectus consectetur augue habitant bibendum, dictum maecenas purus id. Vitae suscipit enim mattis rutrum at vestibulum curabitur. Dui habitasse dis lacus eget porttitor varius. Proin laoreet conubia proin sagittis sagittis bibendum luctus. Rhoncus tristique pretium, fames facilisi dis imperdiet. Aenean non senectus mus inceptos lectus congue vulputate? Nibh massa platea senectus; curae felis magna.',
-                          //     style: GoogleFonts.poppins(),
-                          //     textAlign: TextAlign.justify,
-                          //   ),
-                          //   alignment: Alignment.centerLeft,
-                          // ),
                           Text('Tips menghindari kekerasan',
                               style: GoogleFonts.poppins(
                                   fontSize: 18, fontWeight: FontWeight.w600)),
@@ -251,5 +135,133 @@ class _HomePageState extends State<HomePage> {
                     onPressed: loadData,
                     child: const Text('Muat Data'),
                   );
+  }
+}
+
+class slideCard extends StatelessWidget {
+  const slideCard({
+    super.key,
+    required this.data,
+  });
+
+  final Map<String, String>? data;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          children: [
+            Container(
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular(14),
+                  color: Colors.red[900]),
+              width: 110,
+              height: 110,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 4, vertical: 20),
+                child: Column(
+                  children: [
+                    Text("Jumlah kasus",
+                        style: GoogleFonts.poppins(
+                            fontSize: 10)),
+                    Expanded(
+                      child: Center(
+                        child: FittedBox(
+                          child: Text(
+                            '${data!['Jumlah Kasus'] ?? '0'}',
+                            style:
+                                GoogleFonts.poppins(
+                                    fontSize: 30),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ).animate().shimmer(),
+            SizedBox(
+              width: 20,
+            ),
+            Container(
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular(14),
+                  color: Colors.blue[900]),
+              width: 110,
+              height: 110,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 4, vertical: 20),
+                child: Column(
+                  children: [
+                    Text("korban laki-laki",
+                        style: GoogleFonts.poppins(
+                            fontSize: 10)),
+                    Expanded(
+                      child: Center(
+                        child: FittedBox(
+                          child: Text(
+                            '${data!['Korban Laki-laki'] ?? '0'}',
+                            style:
+                                GoogleFonts.poppins(
+                                    fontSize: 30),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ).animate().shimmer( delay: 200.ms),
+            SizedBox(
+              width: 20,
+            ),
+            Container(
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular(14),
+                  color: Colors.pink[900]),
+              width: 110,
+              height: 110,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 4, vertical: 20),
+                child: Column(
+                  children: [
+                    Text("korban perempuan",
+                        style: GoogleFonts.poppins(
+                            fontSize: 10)),
+                    Expanded(
+                      child: Center(
+                        child: FittedBox(
+                          child: Text(
+                            '${data!['Korban Perempuan'] ?? '0'}',
+                            style:
+                                GoogleFonts.poppins(
+                                    fontSize: 30,),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ).animate().shimmer( delay: 400.ms, ),
+            SizedBox(
+              width: 20,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

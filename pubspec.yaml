@@ -42,10 +42,11 @@ dependencies:
   google_generative_ai: ^0.4.6
   flutter_dotenv: ^5.2.1
   icons_launcher: ^3.0.0
+  flutter_animate: ^4.5.2
   # flutter_launcher_icons: ^0.14.2
 
 icons_launcher:
-  image_path: "assets/ic_logo_radius.jpg"
+  image_path: "assets/ic_logo_radius.png"
   platforms:
     android:
       enable: true
